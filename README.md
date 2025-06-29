@@ -1,51 +1,87 @@
-# Butterfly Image Classification Project
+# Butterfly Image Classifier - Srav's Edition
 
-## Overview
+This project focuses on building a robust image classification model using Transfer Learning (VGG16) to identify 75 species of butterflies. Developed as part of an AI/ML Virtual Internship under SmartBridge.
 
-This project focuses on classifying images of butterflies into 75 different species using image classification techniques. The dataset includes training, testing, and validation sets, along with CSV files containing information about the images and butterfly species.
+------------------------------------------------------------
 
-## Dataset Description
+PROJECT OVERVIEW:
 
-- **Train Set**: Consists of 9285 images partitioned into 75 subdirectories, one for each species.
-- **Test Set**: Contains 375 images partitioned into 75 subdirectories, with 5 test images per species.
-- **Validation Set**: Comprises 375 images partitioned into 75 subdirectories, with 5 validation images per species.
-- **File Format**: All images are in JPG format with dimensions 224 x 224 x 3.
+- Model: VGG16 (Transfer Learning)
+- Dataset: 6499 butterfly images (75 species)
+- Framework: TensorFlow + Keras
+- Deployment: Flask Web App
+- Goal: Upload butterfly image → Predict species → Display output
 
-## Data Files
+------------------------------------------------------------
 
-1. **butterflies.csv**:
-   - Contains 3 columns: filepaths, labels, and dataset.
-   - Each row represents an image in the dataset.
-   - `filepaths`: Relative path to the image.
-   - `labels`: Species label associated with the image file.
-   - `dataset`: Specifies which dataset (train, test, or validation) the image belongs to.
+PROJECT FLOW:
 
-2. **classdict.csv**:
-   - Consists of 6 columns: classindex, class, SCIENTIFIC NAME, height, width, and scale by.
-   - Contains 75 rows, one for each species.
-   - `classindex`: Integer index of the class.
-   - `class`: Common name of the butterfly species.
-   - `SCIENTIFIC NAME`: Official scientific name of the species.
-   - `Height` and `width`: Values used by the model when trained.
-   - `scale by`: Value to scale the image pixels by.
+1. Data Collection:
+   - Dataset link: https://www.kaggle.com/datasets/gpiosenka/butterfly-images40-species
 
-3. **CLASS NAMES.csv**:
-   - Contains 2 columns: COMMON NAME and SCIENTIFIC NAME.
-   - Includes 75 rows, each representing a butterfly species.
-   - `COMMON NAME`: Common name of the butterfly.
-   - `SCIENTIFIC NAME`: Associated scientific name of the species.
+2. Preprocessing:
+   - Resize images
+   - Normalize data
+   - Augment dataset
 
-4. **6 images file**:
-   - Includes 6 butterfly images used for demonstration purposes.
+3. Model Building:
+   - Base model: VGG16 (pretrained, frozen layers)
+   - Custom dense layers added
+   - Trained with EarlyStopping + ModelCheckpoint
+   - Output layer: 75-class softmax
+   - Model saved as: butterfly_model_sravs.h5
 
-## Model Usage
+4. Prediction & Deployment:
+   - Model integrated into Flask app
+   - HTML frontend collects image input
+   - Predicted label shown on UI
 
-The provided files enable the use of a trained model for butterfly image classification. The classdict.csv file facilitates mapping between class indices and species names, while the CLASS NAMES.csv file provides common and scientific names of the butterfly species.
+------------------------------------------------------------
 
-## Demonstration
+TECH STACK:
 
-The 6 images file can be used to demonstrate the prediction function within the kernel.
+- Python
+- TensorFlow / Keras
+- Flask
+- NumPy, Pandas, Matplotlib
+- GitHub
 
-## Conclusion
+------------------------------------------------------------
 
-This project serves as a valuable resource for researchers and enthusiasts interested in butterfly species classification using image recognition techniques. With a comprehensive dataset and associated metadata, it offers opportunities for further research and exploration in the field of computer vision and biodiversity conservation.
+PROJECT FILES:
+
+- app_sravs.py              → Flask backend code
+- butterfly_model_sravs.h5  → Saved trained model
+- sravs_model_train.ipynb   → Jupyter Notebook (training)
+- sravs_predict.ipynb       → Jupyter Notebook (testing)
+- class_list/               → Contains class labels
+- templates/index.html      → Web UI for image input
+- templates/output.html     → Prediction result page
+
+------------------------------------------------------------
+
+HOW TO RUN:
+
+1. Install dependencies (Anaconda preferred):
+   pip install tensorflow flask numpy pandas matplotlib
+
+2. Run Flask app:
+   python app_sravs.py
+
+3. Open browser:
+   http://127.0.0.1:5000
+
+------------------------------------------------------------
+
+AUTHOR:
+
+Sravan (Srav's)  
+AI/ML Internship Project - SmartBridge
+
+------------------------------------------------------------
+
+IMPORTANT LINKS:
+
+- GitHub Repo: https://github.com/sravan0937/butterfly-classifier-sravs
+- Dataset: https://www.kaggle.com/datasets/gpiosenka/butterfly-images40-species
+
